@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ColdheartPrison" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-SKTT1JL\SQLEXPRESS;Initial Catalog=ColdheartPrison;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True" SettingsObjectName="Project_Final_Boss.Properties.Settings" SettingsPropertyName="ColdheartPrisonConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cell" Member="Cells">
+    <Type Name="Cell">
+      <Column Name="Cell_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cell_Number" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Cell_PrisonerCellAssignment" Member="PrisonerCellAssignments" ThisKey="Cell_ID" OtherKey="Cell_ID" Type="PrisonerCellAssignment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prisoner" Member="Prisoners">
+    <Type Name="Prisoner">
+      <Column Name="Prisoner_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Prisoner_Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Prisoner_GivenName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Prisoner_MiddleName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Prisoner_Sex" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Date_Of_Birth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Mugshot" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Crime_Desc" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Sentence_Years" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Admission_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Release_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Prisoner_Status_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Prisoner_PrisonerCellAssignment" Member="PrisonerCellAssignments" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="PrisonerCellAssignment" />
+      <Association Name="Prisoner_ProcessingRecord" Member="ProcessingRecords" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="ProcessingRecord" />
+      <Association Name="Prisoner_SecurityLog" Member="SecurityLogs" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="SecurityLog" />
+      <Association Name="PrisonerStatus_Prisoner" Member="PrisonerStatus" ThisKey="Prisoner_Status_ID" OtherKey="Prisoner_Status_ID" Type="PrisonerStatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PrisonerCellAssignment" Member="PrisonerCellAssignments">
+    <Type Name="PrisonerCellAssignment">
+      <Column Name="Assignment_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Prisoner_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Cell_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Assignment_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Assignment_Status" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Cell_PrisonerCellAssignment" Member="Cell" ThisKey="Cell_ID" OtherKey="Cell_ID" Type="Cell" IsForeignKey="true" />
+      <Association Name="Prisoner_PrisonerCellAssignment" Member="Prisoner" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="Prisoner" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PrisonerStatus" Member="PrisonerStatus">
+    <Type Name="PrisonerStatus">
+      <Column Name="Prisoner_Status_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Status_Desc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="PrisonerStatus_Prisoner" Member="Prisoners" ThisKey="Prisoner_Status_ID" OtherKey="Prisoner_Status_ID" Type="Prisoner" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProcessingRecord" Member="ProcessingRecords">
+    <Type Name="ProcessingRecord">
+      <Column Name="ProcessingRecord_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Prisoner_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Processing_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Processing_Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Document" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Document_Description" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Processing_Notes" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="Prisoner_ProcessingRecord" Member="Prisoner" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="Prisoner" IsForeignKey="true" />
+      <Association Name="Staff_ProcessingRecord" Member="Staff" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SecurityLog" Member="SecurityLogs">
+    <Type Name="SecurityLog">
+      <Column Name="SecurityLog_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Prisoner_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Incident_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Incident_Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="Incident_Description" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Prisoner_SecurityLog" Member="Prisoner" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="Prisoner" IsForeignKey="true" />
+      <Association Name="Staff_SecurityLog" Member="Staff" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="Staff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Staff" Member="Staffs">
+    <Type Name="Staff">
+      <Column Name="Staff_ID" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Staff_Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_Username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Staff_Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="StaffRole_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StaffStatus_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Staff_ProcessingRecord" Member="ProcessingRecords" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="ProcessingRecord" />
+      <Association Name="Staff_SecurityLog" Member="SecurityLogs" ThisKey="Staff_ID" OtherKey="Staff_ID" Type="SecurityLog" />
+      <Association Name="StaffRole_Staff" Member="StaffRole" ThisKey="StaffRole_ID" OtherKey="StaffRole_ID" Type="StaffRole" IsForeignKey="true" />
+      <Association Name="StaffStatus_Staff" Member="StaffStatus" ThisKey="StaffStatus_ID" OtherKey="StaffStatus_ID" Type="StaffStatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StaffRole" Member="StaffRoles">
+    <Type Name="StaffRole">
+      <Column Name="StaffRole_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Role_Desc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="StaffRole_Staff" Member="Staffs" ThisKey="StaffRole_ID" OtherKey="StaffRole_ID" Type="Staff" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StaffStatus" Member="StaffStatus">
+    <Type Name="StaffStatus">
+      <Column Name="StaffStatus_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Status_Desc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="StaffStatus_Staff" Member="Staffs" ThisKey="StaffStatus_ID" OtherKey="StaffStatus_ID" Type="Staff" />
+    </Type>
+  </Table>
+</Database>
