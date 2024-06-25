@@ -31,7 +31,7 @@
     <Grid>
         <!-- Set the background of the grid to an image -->
         <Grid.Background>
-            <ImageBrush ImageSource="/Background/IntakeOfficer.jpg"/>
+            <ImageBrush ImageSource="/Background/CaptureImage.jpg"/>
         </Grid.Background>
 
         <!-- Define the logout button, which remains visible -->
@@ -41,5 +41,6 @@
         <Button Content="" Margin="143,0,0,165" Height="133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137" Click="AddPrisoner_Click" Style="{StaticResource TransparentButtonStyle}"/>
         <Button Name="ManagePrisonerData" Content="" Margin="337,0,0,175" Height="133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137" Click="ManagePrisoner_Click" Style="{StaticResource TransparentButtonStyle}"/>
         <Button Name="ViewPrisoner" Content="" Margin="510,0,0,161" Height="133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="137" Click="ViewPrisoner_Click" Style="{StaticResource TransparentButtonStyle}"/>
+        <Button x:Name="Capture" Content="" Margin="349,288,0,0" Height="100" VerticalAlignment="Top" HorizontalAlignment="Left" Width="111" Click="CaptureImage_Click" Style="{StaticResource TransparentButtonStyle}" RenderTransformOrigin="-0.474,0.541"/>
     </Grid>
 </Window>

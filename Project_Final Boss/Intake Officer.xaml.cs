@@ -19,29 +19,45 @@ namespace Project_Final_Boss
     /// </summary>
     public partial class Intake_Officer : Window
     {
+        DataClasses1DataContext _PrisonDB = null;
         public Intake_Officer()
         {
             InitializeComponent();
+            _PrisonDB = new DataClasses1DataContext(Properties.Settings.Default.ColdheartPrisonConnectionString);
         }
 
         private void AddPrisoner_Click(object sender, RoutedEventArgs e)
         {
-
+            AddPrisoner addPrisonerWindow = new AddPrisoner();
+            addPrisonerWindow.Show();
+            this.Close();
         }
 
         private void ManagePrisoner_Click(object sender, RoutedEventArgs e)
         {
-
+            ManagePrisonerData showmanage = new ManagePrisonerData();
+            showmanage.Show();
+            this.Close();
         }
 
         private void ViewPrisoner_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewPrisoner viewPrisonerWindow = new ViewPrisoner();
+            viewPrisonerWindow.Show();
+            this.Close();
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void CaptureImage_Click(object sender, RoutedEventArgs e)
         {
 
         }
     }
 }
+

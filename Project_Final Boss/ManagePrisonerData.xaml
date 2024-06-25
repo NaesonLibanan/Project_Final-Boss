@@ -1,0 +1,29 @@
+﻿<Window x:Class="Project_Final_Boss.ManagePrisonerData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Final_Boss"
+        mc:Ignorable="d"
+        Title="ManagePrisonerData" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Background/ManagePrisoner.jpg"/>
+        </Grid.Background>
+        <TextBox Name="FirstName" HorizontalAlignment="Left" Margin="565,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" TextChanged="FirstName_TextChanged"/>
+        <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="565,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" TextChanged="MiddleName_TextChanged"/>
+        <TextBox Name="LastName" HorizontalAlignment="Left" Margin="565,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" TextChanged="LastName_TextChanged"/>
+        <TextBox Name="SentenceInPrision" HorizontalAlignment="Left" Margin="565,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20" TextChanged="SentenceInPrision_TextChanged"/>
+
+        <ComboBox Name="Sex" Width="120" Margin="565,188,115,226" SelectionChanged="Sex_SelectionChanged"/>
+        <DatePicker Name="DateOfBirthPicker" Margin="564,225,2,182"/>
+        <ComboBox Name="Crime" Width="120" Margin="565,305,115,109" SelectionChanged="Crime_SelectionChanged"/>
+
+        <Button Content="Change" Margin="43,256,614,158" Click="Photochange_Click"/>
+        <Button Content="Edit" Margin="589,344,139,66" Click="Edit_Click" RenderTransformOrigin="0.584,0.841"/>
+
+        <Image Name="ImageCapture" Margin="47,101,618,199" Stretch="Uniform"/>
+        <ComboBox Name="Prisoners" Width="120" Margin="198,105,482,301" SelectionChanged="Prisoners_SelectionChanged"
+          DisplayMemberPath="FullName" SelectedValuePath="Prisoner_ID"/>
+    </Grid>
+</Window>

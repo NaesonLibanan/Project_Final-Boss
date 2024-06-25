@@ -10,23 +10,18 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Background/AddPrisioner.jpg"/>
         </Grid.Background>
-        <TextBox Name ="FirstName" HorizontalAlignment="Left" Margin="565,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged"/>
-        <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="565,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_1"/>
-        <TextBox Name="LastName" HorizontalAlignment="Left" Margin="565,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_2"/>
-        <TextBox Name="SentenceInPrision" HorizontalAlignment="Left" Margin="565,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged4"/>
-        <ComboBox Name="Sex" Width="120" Margin="565,188,115,226" SelectionChanged="ComboBox_SelectionChanged_1"/>
-        <DatePicker Margin="564,225,2,182"/>
-        <ComboBox Name="Crime" Width="120" Margin="565,305,115,109" SelectionChanged="ComboBox_SelectionChanged"/>
-        <Button Content="Use Camera" Margin="200,264,523,146" Click="Camera_Click"/>
-        <Button Content="Upload Pic" Margin="282,264,446,146" Click="Upload_Click"/>
-        <Button Content="Save" Margin="589,344,139,66" Click="Save_Click"/>
-        <Image Margin="207,110,458,191"/>
+        <TextBox Name="FirstName" HorizontalAlignment="Left" Margin="565,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
+        <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="565,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
+        <TextBox Name="LastName" HorizontalAlignment="Left" Margin="565,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
+        <TextBox Name="SentenceInPrision" HorizontalAlignment="Left" Margin="565,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="20"/>
 
-        <!-- Set the background of the grid to an image -->
+        <ComboBox Name="Sex" Width="120" Margin="565,188,115,226"/>
+        <DatePicker Name="DateOfBirthPicker" Margin="564,225,2,182"/>
+        <ComboBox Name="Crime" Width="120" Margin="565,305,115,109"/>
 
+        <Button Content="Choose Picture" Margin="203,266,454,148" Click="Camera_Click"/>
+        <Button Content="Add" Margin="589,344,139,66" Click="Add_Click"/>
 
-        <!-- Define the logout button, which remains visible -->
-
-        <!-- Define the other buttons and apply the transparent style to them -->
+        <Image Name="ImageCapture" Margin="207,110,458,191" Stretch="Uniform"/>
     </Grid>
 </Window>

@@ -33,9 +33,6 @@ namespace Project_Final_Boss
     partial void InsertCell(Cell instance);
     partial void UpdateCell(Cell instance);
     partial void DeleteCell(Cell instance);
-    partial void InsertPrisoner(Prisoner instance);
-    partial void UpdatePrisoner(Prisoner instance);
-    partial void DeletePrisoner(Prisoner instance);
     partial void InsertPrisonerCellAssignment(PrisonerCellAssignment instance);
     partial void UpdatePrisonerCellAssignment(PrisonerCellAssignment instance);
     partial void DeletePrisonerCellAssignment(PrisonerCellAssignment instance);
@@ -57,9 +54,9 @@ namespace Project_Final_Boss
     partial void InsertStaffStatus(StaffStatus instance);
     partial void UpdateStaffStatus(StaffStatus instance);
     partial void DeleteStaffStatus(StaffStatus instance);
-    partial void InsertMugshot(Mugshot instance);
-    partial void UpdateMugshot(Mugshot instance);
-    partial void DeleteMugshot(Mugshot instance);
+    partial void InsertPrisoner(Prisoner instance);
+    partial void UpdatePrisoner(Prisoner instance);
+    partial void DeletePrisoner(Prisoner instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -97,14 +94,6 @@ namespace Project_Final_Boss
 			get
 			{
 				return this.GetTable<Cell>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Prisoner> Prisoners
-		{
-			get
-			{
-				return this.GetTable<Prisoner>();
 			}
 		}
 		
@@ -164,11 +153,19 @@ namespace Project_Final_Boss
 			}
 		}
 		
-		public System.Data.Linq.Table<Mugshot> Mugshots
+		public System.Data.Linq.Table<PrisonerDataView> PrisonerDataViews
 		{
 			get
 			{
-				return this.GetTable<Mugshot>();
+				return this.GetTable<PrisonerDataView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Prisoner> Prisoners
+		{
+			get
+			{
+				return this.GetTable<Prisoner>();
 			}
 		}
 	}
@@ -308,485 +305,6 @@ namespace Project_Final_Boss
 		{
 			this.SendPropertyChanging();
 			entity.Cell = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Prisoner")]
-	public partial class Prisoner : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Prisoner_ID;
-		
-		private string _Prisoner_Surname;
-		
-		private string _Prisoner_GivenName;
-		
-		private string _Prisoner_MiddleName;
-		
-		private char _Prisoner_Sex;
-		
-		private System.DateTime _Date_Of_Birth;
-		
-		private System.Data.Linq.Binary _Mugshot;
-		
-		private string _Crime_Desc;
-		
-		private int _Sentence_Years;
-		
-		private System.DateTime _Admission_Date;
-		
-		private System.Nullable<System.DateTime> _Release_Date;
-		
-		private int _Prisoner_Status_ID;
-		
-		private EntitySet<PrisonerCellAssignment> _PrisonerCellAssignments;
-		
-		private EntitySet<ProcessingRecord> _ProcessingRecords;
-		
-		private EntitySet<SecurityLog> _SecurityLogs;
-		
-		private EntitySet<Mugshot> _Mugshots;
-		
-		private EntityRef<PrisonerStatus> _PrisonerStatus;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPrisoner_IDChanging(string value);
-    partial void OnPrisoner_IDChanged();
-    partial void OnPrisoner_SurnameChanging(string value);
-    partial void OnPrisoner_SurnameChanged();
-    partial void OnPrisoner_GivenNameChanging(string value);
-    partial void OnPrisoner_GivenNameChanged();
-    partial void OnPrisoner_MiddleNameChanging(string value);
-    partial void OnPrisoner_MiddleNameChanged();
-    partial void OnPrisoner_SexChanging(char value);
-    partial void OnPrisoner_SexChanged();
-    partial void OnDate_Of_BirthChanging(System.DateTime value);
-    partial void OnDate_Of_BirthChanged();
-    partial void OnMugshotChanging(System.Data.Linq.Binary value);
-    partial void OnMugshotChanged();
-    partial void OnCrime_DescChanging(string value);
-    partial void OnCrime_DescChanged();
-    partial void OnSentence_YearsChanging(int value);
-    partial void OnSentence_YearsChanged();
-    partial void OnAdmission_DateChanging(System.DateTime value);
-    partial void OnAdmission_DateChanged();
-    partial void OnRelease_DateChanging(System.Nullable<System.DateTime> value);
-    partial void OnRelease_DateChanged();
-    partial void OnPrisoner_Status_IDChanging(int value);
-    partial void OnPrisoner_Status_IDChanged();
-    #endregion
-		
-		public Prisoner()
-		{
-			this._PrisonerCellAssignments = new EntitySet<PrisonerCellAssignment>(new Action<PrisonerCellAssignment>(this.attach_PrisonerCellAssignments), new Action<PrisonerCellAssignment>(this.detach_PrisonerCellAssignments));
-			this._ProcessingRecords = new EntitySet<ProcessingRecord>(new Action<ProcessingRecord>(this.attach_ProcessingRecords), new Action<ProcessingRecord>(this.detach_ProcessingRecords));
-			this._SecurityLogs = new EntitySet<SecurityLog>(new Action<SecurityLog>(this.attach_SecurityLogs), new Action<SecurityLog>(this.detach_SecurityLogs));
-			this._Mugshots = new EntitySet<Mugshot>(new Action<Mugshot>(this.attach_Mugshots), new Action<Mugshot>(this.detach_Mugshots));
-			this._PrisonerStatus = default(EntityRef<PrisonerStatus>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Prisoner_ID
-		{
-			get
-			{
-				return this._Prisoner_ID;
-			}
-			set
-			{
-				if ((this._Prisoner_ID != value))
-				{
-					this.OnPrisoner_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Prisoner_ID = value;
-					this.SendPropertyChanged("Prisoner_ID");
-					this.OnPrisoner_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Surname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Prisoner_Surname
-		{
-			get
-			{
-				return this._Prisoner_Surname;
-			}
-			set
-			{
-				if ((this._Prisoner_Surname != value))
-				{
-					this.OnPrisoner_SurnameChanging(value);
-					this.SendPropertyChanging();
-					this._Prisoner_Surname = value;
-					this.SendPropertyChanged("Prisoner_Surname");
-					this.OnPrisoner_SurnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_GivenName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Prisoner_GivenName
-		{
-			get
-			{
-				return this._Prisoner_GivenName;
-			}
-			set
-			{
-				if ((this._Prisoner_GivenName != value))
-				{
-					this.OnPrisoner_GivenNameChanging(value);
-					this.SendPropertyChanging();
-					this._Prisoner_GivenName = value;
-					this.SendPropertyChanged("Prisoner_GivenName");
-					this.OnPrisoner_GivenNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_MiddleName", DbType="VarChar(50)")]
-		public string Prisoner_MiddleName
-		{
-			get
-			{
-				return this._Prisoner_MiddleName;
-			}
-			set
-			{
-				if ((this._Prisoner_MiddleName != value))
-				{
-					this.OnPrisoner_MiddleNameChanging(value);
-					this.SendPropertyChanging();
-					this._Prisoner_MiddleName = value;
-					this.SendPropertyChanged("Prisoner_MiddleName");
-					this.OnPrisoner_MiddleNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Sex", DbType="Char(1) NOT NULL")]
-		public char Prisoner_Sex
-		{
-			get
-			{
-				return this._Prisoner_Sex;
-			}
-			set
-			{
-				if ((this._Prisoner_Sex != value))
-				{
-					this.OnPrisoner_SexChanging(value);
-					this.SendPropertyChanging();
-					this._Prisoner_Sex = value;
-					this.SendPropertyChanged("Prisoner_Sex");
-					this.OnPrisoner_SexChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date_Of_Birth", DbType="Date NOT NULL")]
-		public System.DateTime Date_Of_Birth
-		{
-			get
-			{
-				return this._Date_Of_Birth;
-			}
-			set
-			{
-				if ((this._Date_Of_Birth != value))
-				{
-					this.OnDate_Of_BirthChanging(value);
-					this.SendPropertyChanging();
-					this._Date_Of_Birth = value;
-					this.SendPropertyChanged("Date_Of_Birth");
-					this.OnDate_Of_BirthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Mugshot
-		{
-			get
-			{
-				return this._Mugshot;
-			}
-			set
-			{
-				if ((this._Mugshot != value))
-				{
-					this.OnMugshotChanging(value);
-					this.SendPropertyChanging();
-					this._Mugshot = value;
-					this.SendPropertyChanged("Mugshot");
-					this.OnMugshotChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Crime_Desc", DbType="VarChar(255)")]
-		public string Crime_Desc
-		{
-			get
-			{
-				return this._Crime_Desc;
-			}
-			set
-			{
-				if ((this._Crime_Desc != value))
-				{
-					this.OnCrime_DescChanging(value);
-					this.SendPropertyChanging();
-					this._Crime_Desc = value;
-					this.SendPropertyChanged("Crime_Desc");
-					this.OnCrime_DescChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sentence_Years", DbType="Int NOT NULL")]
-		public int Sentence_Years
-		{
-			get
-			{
-				return this._Sentence_Years;
-			}
-			set
-			{
-				if ((this._Sentence_Years != value))
-				{
-					this.OnSentence_YearsChanging(value);
-					this.SendPropertyChanging();
-					this._Sentence_Years = value;
-					this.SendPropertyChanged("Sentence_Years");
-					this.OnSentence_YearsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Admission_Date", DbType="Date NOT NULL")]
-		public System.DateTime Admission_Date
-		{
-			get
-			{
-				return this._Admission_Date;
-			}
-			set
-			{
-				if ((this._Admission_Date != value))
-				{
-					this.OnAdmission_DateChanging(value);
-					this.SendPropertyChanging();
-					this._Admission_Date = value;
-					this.SendPropertyChanged("Admission_Date");
-					this.OnAdmission_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Release_Date", DbType="Date")]
-		public System.Nullable<System.DateTime> Release_Date
-		{
-			get
-			{
-				return this._Release_Date;
-			}
-			set
-			{
-				if ((this._Release_Date != value))
-				{
-					this.OnRelease_DateChanging(value);
-					this.SendPropertyChanging();
-					this._Release_Date = value;
-					this.SendPropertyChanged("Release_Date");
-					this.OnRelease_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Status_ID", DbType="Int NOT NULL")]
-		public int Prisoner_Status_ID
-		{
-			get
-			{
-				return this._Prisoner_Status_ID;
-			}
-			set
-			{
-				if ((this._Prisoner_Status_ID != value))
-				{
-					if (this._PrisonerStatus.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPrisoner_Status_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Prisoner_Status_ID = value;
-					this.SendPropertyChanged("Prisoner_Status_ID");
-					this.OnPrisoner_Status_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_PrisonerCellAssignment", Storage="_PrisonerCellAssignments", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
-		public EntitySet<PrisonerCellAssignment> PrisonerCellAssignments
-		{
-			get
-			{
-				return this._PrisonerCellAssignments;
-			}
-			set
-			{
-				this._PrisonerCellAssignments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_ProcessingRecord", Storage="_ProcessingRecords", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
-		public EntitySet<ProcessingRecord> ProcessingRecords
-		{
-			get
-			{
-				return this._ProcessingRecords;
-			}
-			set
-			{
-				this._ProcessingRecords.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_SecurityLog", Storage="_SecurityLogs", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
-		public EntitySet<SecurityLog> SecurityLogs
-		{
-			get
-			{
-				return this._SecurityLogs;
-			}
-			set
-			{
-				this._SecurityLogs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_Mugshot", Storage="_Mugshots", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
-		public EntitySet<Mugshot> Mugshots
-		{
-			get
-			{
-				return this._Mugshots;
-			}
-			set
-			{
-				this._Mugshots.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PrisonerStatus_Prisoner", Storage="_PrisonerStatus", ThisKey="Prisoner_Status_ID", OtherKey="Prisoner_Status_ID", IsForeignKey=true)]
-		public PrisonerStatus PrisonerStatus
-		{
-			get
-			{
-				return this._PrisonerStatus.Entity;
-			}
-			set
-			{
-				PrisonerStatus previousValue = this._PrisonerStatus.Entity;
-				if (((previousValue != value) 
-							|| (this._PrisonerStatus.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PrisonerStatus.Entity = null;
-						previousValue.Prisoners.Remove(this);
-					}
-					this._PrisonerStatus.Entity = value;
-					if ((value != null))
-					{
-						value.Prisoners.Add(this);
-						this._Prisoner_Status_ID = value.Prisoner_Status_ID;
-					}
-					else
-					{
-						this._Prisoner_Status_ID = default(int);
-					}
-					this.SendPropertyChanged("PrisonerStatus");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_PrisonerCellAssignments(PrisonerCellAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = this;
-		}
-		
-		private void detach_PrisonerCellAssignments(PrisonerCellAssignment entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = null;
-		}
-		
-		private void attach_ProcessingRecords(ProcessingRecord entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = this;
-		}
-		
-		private void detach_ProcessingRecords(ProcessingRecord entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = null;
-		}
-		
-		private void attach_SecurityLogs(SecurityLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = this;
-		}
-		
-		private void detach_SecurityLogs(SecurityLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = null;
-		}
-		
-		private void attach_Mugshots(Mugshot entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = this;
-		}
-		
-		private void detach_Mugshots(Mugshot entity)
-		{
-			this.SendPropertyChanging();
-			entity.Prisoner = null;
 		}
 	}
 	
@@ -1166,9 +684,9 @@ namespace Project_Final_Boss
 		
 		private string _Processing_Notes;
 		
-		private EntityRef<Prisoner> _Prisoner;
-		
 		private EntityRef<Staff> _Staff;
+		
+		private EntityRef<Prisoner> _Prisoner;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1194,8 +712,8 @@ namespace Project_Final_Boss
 		
 		public ProcessingRecord()
 		{
-			this._Prisoner = default(EntityRef<Prisoner>);
 			this._Staff = default(EntityRef<Staff>);
+			this._Prisoner = default(EntityRef<Prisoner>);
 			OnCreated();
 		}
 		
@@ -1367,40 +885,6 @@ namespace Project_Final_Boss
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_ProcessingRecord", Storage="_Prisoner", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID", IsForeignKey=true)]
-		public Prisoner Prisoner
-		{
-			get
-			{
-				return this._Prisoner.Entity;
-			}
-			set
-			{
-				Prisoner previousValue = this._Prisoner.Entity;
-				if (((previousValue != value) 
-							|| (this._Prisoner.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Prisoner.Entity = null;
-						previousValue.ProcessingRecords.Remove(this);
-					}
-					this._Prisoner.Entity = value;
-					if ((value != null))
-					{
-						value.ProcessingRecords.Add(this);
-						this._Prisoner_ID = value.Prisoner_ID;
-					}
-					else
-					{
-						this._Prisoner_ID = default(string);
-					}
-					this.SendPropertyChanged("Prisoner");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_ProcessingRecord", Storage="_Staff", ThisKey="Staff_ID", OtherKey="Staff_ID", IsForeignKey=true)]
 		public Staff Staff
 		{
@@ -1431,6 +915,40 @@ namespace Project_Final_Boss
 						this._Staff_ID = default(string);
 					}
 					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_ProcessingRecord", Storage="_Prisoner", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID", IsForeignKey=true)]
+		public Prisoner Prisoner
+		{
+			get
+			{
+				return this._Prisoner.Entity;
+			}
+			set
+			{
+				Prisoner previousValue = this._Prisoner.Entity;
+				if (((previousValue != value) 
+							|| (this._Prisoner.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Prisoner.Entity = null;
+						previousValue.ProcessingRecords.Remove(this);
+					}
+					this._Prisoner.Entity = value;
+					if ((value != null))
+					{
+						value.ProcessingRecords.Add(this);
+						this._Prisoner_ID = value.Prisoner_ID;
+					}
+					else
+					{
+						this._Prisoner_ID = default(string);
+					}
+					this.SendPropertyChanged("Prisoner");
 				}
 			}
 		}
@@ -1474,9 +992,9 @@ namespace Project_Final_Boss
 		
 		private string _Staff_ID;
 		
-		private EntityRef<Prisoner> _Prisoner;
-		
 		private EntityRef<Staff> _Staff;
+		
+		private EntityRef<Prisoner> _Prisoner;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1498,8 +1016,8 @@ namespace Project_Final_Boss
 		
 		public SecurityLog()
 		{
-			this._Prisoner = default(EntityRef<Prisoner>);
 			this._Staff = default(EntityRef<Staff>);
+			this._Prisoner = default(EntityRef<Prisoner>);
 			OnCreated();
 		}
 		
@@ -1631,40 +1149,6 @@ namespace Project_Final_Boss
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_SecurityLog", Storage="_Prisoner", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID", IsForeignKey=true)]
-		public Prisoner Prisoner
-		{
-			get
-			{
-				return this._Prisoner.Entity;
-			}
-			set
-			{
-				Prisoner previousValue = this._Prisoner.Entity;
-				if (((previousValue != value) 
-							|| (this._Prisoner.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Prisoner.Entity = null;
-						previousValue.SecurityLogs.Remove(this);
-					}
-					this._Prisoner.Entity = value;
-					if ((value != null))
-					{
-						value.SecurityLogs.Add(this);
-						this._Prisoner_ID = value.Prisoner_ID;
-					}
-					else
-					{
-						this._Prisoner_ID = default(string);
-					}
-					this.SendPropertyChanged("Prisoner");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_SecurityLog", Storage="_Staff", ThisKey="Staff_ID", OtherKey="Staff_ID", IsForeignKey=true)]
 		public Staff Staff
 		{
@@ -1695,6 +1179,40 @@ namespace Project_Final_Boss
 						this._Staff_ID = default(string);
 					}
 					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_SecurityLog", Storage="_Prisoner", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID", IsForeignKey=true)]
+		public Prisoner Prisoner
+		{
+			get
+			{
+				return this._Prisoner.Entity;
+			}
+			set
+			{
+				Prisoner previousValue = this._Prisoner.Entity;
+				if (((previousValue != value) 
+							|| (this._Prisoner.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Prisoner.Entity = null;
+						previousValue.SecurityLogs.Remove(this);
+					}
+					this._Prisoner.Entity = value;
+					if ((value != null))
+					{
+						value.SecurityLogs.Add(this);
+						this._Prisoner_ID = value.Prisoner_ID;
+					}
+					else
+					{
+						this._Prisoner_ID = default(string);
+					}
+					this.SendPropertyChanged("Prisoner");
 				}
 			}
 		}
@@ -2268,60 +1786,38 @@ namespace Project_Final_Boss
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Mugshot")]
-	public partial class Mugshot : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PrisonerDataView")]
+	public partial class PrisonerDataView
 	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Mugshot_ID;
 		
 		private string _Prisoner_ID;
 		
-		private System.Data.Linq.Binary _Mugshot1;
+		private string _Prisoner_Surname;
 		
-		private System.DateTime _Capture_Date;
+		private string _Prisoner_GivenName;
 		
-		private EntityRef<Prisoner> _Prisoner;
+		private string _Prisoner_MiddleName;
 		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMugshot_IDChanging(int value);
-    partial void OnMugshot_IDChanged();
-    partial void OnPrisoner_IDChanging(string value);
-    partial void OnPrisoner_IDChanged();
-    partial void OnMugshot1Changing(System.Data.Linq.Binary value);
-    partial void OnMugshot1Changed();
-    partial void OnCapture_DateChanging(System.DateTime value);
-    partial void OnCapture_DateChanged();
-    #endregion
+		private char _Prisoner_Sex;
 		
-		public Mugshot()
+		private System.DateTime _Date_Of_Birth;
+		
+		private string _Crime_Desc;
+		
+		private int _Sentence_Years;
+		
+		private System.DateTime _Admission_Date;
+		
+		private System.Nullable<System.DateTime> _Release_Date;
+		
+		private string _Prisoner_Status;
+		
+		private System.Data.Linq.Binary _Mugshot_Data;
+		
+		private string _Mugshot_Path;
+		
+		public PrisonerDataView()
 		{
-			this._Prisoner = default(EntityRef<Prisoner>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Mugshot_ID
-		{
-			get
-			{
-				return this._Mugshot_ID;
-			}
-			set
-			{
-				if ((this._Mugshot_ID != value))
-				{
-					this.OnMugshot_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Mugshot_ID = value;
-					this.SendPropertyChanged("Mugshot_ID");
-					this.OnMugshot_IDChanged();
-				}
-			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
@@ -2335,10 +1831,296 @@ namespace Project_Final_Boss
 			{
 				if ((this._Prisoner_ID != value))
 				{
-					if (this._Prisoner.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
+					this._Prisoner_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Surname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Prisoner_Surname
+		{
+			get
+			{
+				return this._Prisoner_Surname;
+			}
+			set
+			{
+				if ((this._Prisoner_Surname != value))
+				{
+					this._Prisoner_Surname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_GivenName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Prisoner_GivenName
+		{
+			get
+			{
+				return this._Prisoner_GivenName;
+			}
+			set
+			{
+				if ((this._Prisoner_GivenName != value))
+				{
+					this._Prisoner_GivenName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_MiddleName", DbType="VarChar(50)")]
+		public string Prisoner_MiddleName
+		{
+			get
+			{
+				return this._Prisoner_MiddleName;
+			}
+			set
+			{
+				if ((this._Prisoner_MiddleName != value))
+				{
+					this._Prisoner_MiddleName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Sex", DbType="Char(1) NOT NULL")]
+		public char Prisoner_Sex
+		{
+			get
+			{
+				return this._Prisoner_Sex;
+			}
+			set
+			{
+				if ((this._Prisoner_Sex != value))
+				{
+					this._Prisoner_Sex = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date_Of_Birth", DbType="Date NOT NULL")]
+		public System.DateTime Date_Of_Birth
+		{
+			get
+			{
+				return this._Date_Of_Birth;
+			}
+			set
+			{
+				if ((this._Date_Of_Birth != value))
+				{
+					this._Date_Of_Birth = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Crime_Desc", DbType="VarChar(255)")]
+		public string Crime_Desc
+		{
+			get
+			{
+				return this._Crime_Desc;
+			}
+			set
+			{
+				if ((this._Crime_Desc != value))
+				{
+					this._Crime_Desc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sentence_Years", DbType="Int NOT NULL")]
+		public int Sentence_Years
+		{
+			get
+			{
+				return this._Sentence_Years;
+			}
+			set
+			{
+				if ((this._Sentence_Years != value))
+				{
+					this._Sentence_Years = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Admission_Date", DbType="Date NOT NULL")]
+		public System.DateTime Admission_Date
+		{
+			get
+			{
+				return this._Admission_Date;
+			}
+			set
+			{
+				if ((this._Admission_Date != value))
+				{
+					this._Admission_Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Release_Date", DbType="Date")]
+		public System.Nullable<System.DateTime> Release_Date
+		{
+			get
+			{
+				return this._Release_Date;
+			}
+			set
+			{
+				if ((this._Release_Date != value))
+				{
+					this._Release_Date = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Status", DbType="VarChar(50)")]
+		public string Prisoner_Status
+		{
+			get
+			{
+				return this._Prisoner_Status;
+			}
+			set
+			{
+				if ((this._Prisoner_Status != value))
+				{
+					this._Prisoner_Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot_Data", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Mugshot_Data
+		{
+			get
+			{
+				return this._Mugshot_Data;
+			}
+			set
+			{
+				if ((this._Mugshot_Data != value))
+				{
+					this._Mugshot_Data = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot_Path", DbType="VarChar(255)")]
+		public string Mugshot_Path
+		{
+			get
+			{
+				return this._Mugshot_Path;
+			}
+			set
+			{
+				if ((this._Mugshot_Path != value))
+				{
+					this._Mugshot_Path = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Prisoner")]
+	public partial class Prisoner : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Prisoner_ID;
+		
+		private string _Prisoner_Surname;
+		
+		private string _Prisoner_GivenName;
+		
+		private string _Prisoner_MiddleName;
+		
+		private char _Prisoner_Sex;
+		
+		private System.DateTime _Date_Of_Birth;
+		
+		private string _Crime_Desc;
+		
+		private int _Sentence_Years;
+		
+		private System.DateTime _Admission_Date;
+		
+		private System.Nullable<System.DateTime> _Release_Date;
+		
+		private int _Prisoner_Status_ID;
+		
+		private System.Data.Linq.Binary _Mugshot_Data;
+		
+		private string _Mugshot_Path;
+		
+		private EntitySet<PrisonerCellAssignment> _PrisonerCellAssignments;
+		
+		private EntitySet<ProcessingRecord> _ProcessingRecords;
+		
+		private EntitySet<SecurityLog> _SecurityLogs;
+		
+		private EntityRef<PrisonerStatus> _PrisonerStatus;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPrisoner_IDChanging(string value);
+    partial void OnPrisoner_IDChanged();
+    partial void OnPrisoner_SurnameChanging(string value);
+    partial void OnPrisoner_SurnameChanged();
+    partial void OnPrisoner_GivenNameChanging(string value);
+    partial void OnPrisoner_GivenNameChanged();
+    partial void OnPrisoner_MiddleNameChanging(string value);
+    partial void OnPrisoner_MiddleNameChanged();
+    partial void OnPrisoner_SexChanging(char value);
+    partial void OnPrisoner_SexChanged();
+    partial void OnDate_Of_BirthChanging(System.DateTime value);
+    partial void OnDate_Of_BirthChanged();
+    partial void OnCrime_DescChanging(string value);
+    partial void OnCrime_DescChanged();
+    partial void OnSentence_YearsChanging(int value);
+    partial void OnSentence_YearsChanged();
+    partial void OnAdmission_DateChanging(System.DateTime value);
+    partial void OnAdmission_DateChanged();
+    partial void OnRelease_DateChanging(System.Nullable<System.DateTime> value);
+    partial void OnRelease_DateChanged();
+    partial void OnPrisoner_Status_IDChanging(int value);
+    partial void OnPrisoner_Status_IDChanged();
+    partial void OnMugshot_DataChanging(System.Data.Linq.Binary value);
+    partial void OnMugshot_DataChanged();
+    partial void OnMugshot_PathChanging(string value);
+    partial void OnMugshot_PathChanged();
+    #endregion
+		
+		public Prisoner()
+		{
+			this._PrisonerCellAssignments = new EntitySet<PrisonerCellAssignment>(new Action<PrisonerCellAssignment>(this.attach_PrisonerCellAssignments), new Action<PrisonerCellAssignment>(this.detach_PrisonerCellAssignments));
+			this._ProcessingRecords = new EntitySet<ProcessingRecord>(new Action<ProcessingRecord>(this.attach_ProcessingRecords), new Action<ProcessingRecord>(this.detach_ProcessingRecords));
+			this._SecurityLogs = new EntitySet<SecurityLog>(new Action<SecurityLog>(this.attach_SecurityLogs), new Action<SecurityLog>(this.detach_SecurityLogs));
+			this._PrisonerStatus = default(EntityRef<PrisonerStatus>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Prisoner_ID
+		{
+			get
+			{
+				return this._Prisoner_ID;
+			}
+			set
+			{
+				if ((this._Prisoner_ID != value))
+				{
 					this.OnPrisoner_IDChanging(value);
 					this.SendPropertyChanging();
 					this._Prisoner_ID = value;
@@ -2348,76 +2130,319 @@ namespace Project_Final_Boss
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Mugshot", Storage="_Mugshot1", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Mugshot1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Surname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Prisoner_Surname
 		{
 			get
 			{
-				return this._Mugshot1;
+				return this._Prisoner_Surname;
 			}
 			set
 			{
-				if ((this._Mugshot1 != value))
+				if ((this._Prisoner_Surname != value))
 				{
-					this.OnMugshot1Changing(value);
+					this.OnPrisoner_SurnameChanging(value);
 					this.SendPropertyChanging();
-					this._Mugshot1 = value;
-					this.SendPropertyChanged("Mugshot1");
-					this.OnMugshot1Changed();
+					this._Prisoner_Surname = value;
+					this.SendPropertyChanged("Prisoner_Surname");
+					this.OnPrisoner_SurnameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capture_Date", DbType="Date NOT NULL")]
-		public System.DateTime Capture_Date
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_GivenName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Prisoner_GivenName
 		{
 			get
 			{
-				return this._Capture_Date;
+				return this._Prisoner_GivenName;
 			}
 			set
 			{
-				if ((this._Capture_Date != value))
+				if ((this._Prisoner_GivenName != value))
 				{
-					this.OnCapture_DateChanging(value);
+					this.OnPrisoner_GivenNameChanging(value);
 					this.SendPropertyChanging();
-					this._Capture_Date = value;
-					this.SendPropertyChanged("Capture_Date");
-					this.OnCapture_DateChanged();
+					this._Prisoner_GivenName = value;
+					this.SendPropertyChanged("Prisoner_GivenName");
+					this.OnPrisoner_GivenNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_Mugshot", Storage="_Prisoner", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID", IsForeignKey=true)]
-		public Prisoner Prisoner
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_MiddleName", DbType="VarChar(50)")]
+		public string Prisoner_MiddleName
 		{
 			get
 			{
-				return this._Prisoner.Entity;
+				return this._Prisoner_MiddleName;
 			}
 			set
 			{
-				Prisoner previousValue = this._Prisoner.Entity;
+				if ((this._Prisoner_MiddleName != value))
+				{
+					this.OnPrisoner_MiddleNameChanging(value);
+					this.SendPropertyChanging();
+					this._Prisoner_MiddleName = value;
+					this.SendPropertyChanged("Prisoner_MiddleName");
+					this.OnPrisoner_MiddleNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Sex", DbType="Char(1) NOT NULL")]
+		public char Prisoner_Sex
+		{
+			get
+			{
+				return this._Prisoner_Sex;
+			}
+			set
+			{
+				if ((this._Prisoner_Sex != value))
+				{
+					this.OnPrisoner_SexChanging(value);
+					this.SendPropertyChanging();
+					this._Prisoner_Sex = value;
+					this.SendPropertyChanged("Prisoner_Sex");
+					this.OnPrisoner_SexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date_Of_Birth", DbType="Date NOT NULL")]
+		public System.DateTime Date_Of_Birth
+		{
+			get
+			{
+				return this._Date_Of_Birth;
+			}
+			set
+			{
+				if ((this._Date_Of_Birth != value))
+				{
+					this.OnDate_Of_BirthChanging(value);
+					this.SendPropertyChanging();
+					this._Date_Of_Birth = value;
+					this.SendPropertyChanged("Date_Of_Birth");
+					this.OnDate_Of_BirthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Crime_Desc", DbType="VarChar(255)")]
+		public string Crime_Desc
+		{
+			get
+			{
+				return this._Crime_Desc;
+			}
+			set
+			{
+				if ((this._Crime_Desc != value))
+				{
+					this.OnCrime_DescChanging(value);
+					this.SendPropertyChanging();
+					this._Crime_Desc = value;
+					this.SendPropertyChanged("Crime_Desc");
+					this.OnCrime_DescChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sentence_Years", DbType="Int NOT NULL")]
+		public int Sentence_Years
+		{
+			get
+			{
+				return this._Sentence_Years;
+			}
+			set
+			{
+				if ((this._Sentence_Years != value))
+				{
+					this.OnSentence_YearsChanging(value);
+					this.SendPropertyChanging();
+					this._Sentence_Years = value;
+					this.SendPropertyChanged("Sentence_Years");
+					this.OnSentence_YearsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Admission_Date", DbType="Date NOT NULL")]
+		public System.DateTime Admission_Date
+		{
+			get
+			{
+				return this._Admission_Date;
+			}
+			set
+			{
+				if ((this._Admission_Date != value))
+				{
+					this.OnAdmission_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Admission_Date = value;
+					this.SendPropertyChanged("Admission_Date");
+					this.OnAdmission_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Release_Date", DbType="Date")]
+		public System.Nullable<System.DateTime> Release_Date
+		{
+			get
+			{
+				return this._Release_Date;
+			}
+			set
+			{
+				if ((this._Release_Date != value))
+				{
+					this.OnRelease_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Release_Date = value;
+					this.SendPropertyChanged("Release_Date");
+					this.OnRelease_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_Status_ID", DbType="Int NOT NULL")]
+		public int Prisoner_Status_ID
+		{
+			get
+			{
+				return this._Prisoner_Status_ID;
+			}
+			set
+			{
+				if ((this._Prisoner_Status_ID != value))
+				{
+					if (this._PrisonerStatus.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPrisoner_Status_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Prisoner_Status_ID = value;
+					this.SendPropertyChanged("Prisoner_Status_ID");
+					this.OnPrisoner_Status_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot_Data", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Mugshot_Data
+		{
+			get
+			{
+				return this._Mugshot_Data;
+			}
+			set
+			{
+				if ((this._Mugshot_Data != value))
+				{
+					this.OnMugshot_DataChanging(value);
+					this.SendPropertyChanging();
+					this._Mugshot_Data = value;
+					this.SendPropertyChanged("Mugshot_Data");
+					this.OnMugshot_DataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot_Path", DbType="VarChar(255)")]
+		public string Mugshot_Path
+		{
+			get
+			{
+				return this._Mugshot_Path;
+			}
+			set
+			{
+				if ((this._Mugshot_Path != value))
+				{
+					this.OnMugshot_PathChanging(value);
+					this.SendPropertyChanging();
+					this._Mugshot_Path = value;
+					this.SendPropertyChanged("Mugshot_Path");
+					this.OnMugshot_PathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_PrisonerCellAssignment", Storage="_PrisonerCellAssignments", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
+		public EntitySet<PrisonerCellAssignment> PrisonerCellAssignments
+		{
+			get
+			{
+				return this._PrisonerCellAssignments;
+			}
+			set
+			{
+				this._PrisonerCellAssignments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_ProcessingRecord", Storage="_ProcessingRecords", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
+		public EntitySet<ProcessingRecord> ProcessingRecords
+		{
+			get
+			{
+				return this._ProcessingRecords;
+			}
+			set
+			{
+				this._ProcessingRecords.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_SecurityLog", Storage="_SecurityLogs", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
+		public EntitySet<SecurityLog> SecurityLogs
+		{
+			get
+			{
+				return this._SecurityLogs;
+			}
+			set
+			{
+				this._SecurityLogs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PrisonerStatus_Prisoner", Storage="_PrisonerStatus", ThisKey="Prisoner_Status_ID", OtherKey="Prisoner_Status_ID", IsForeignKey=true)]
+		public PrisonerStatus PrisonerStatus
+		{
+			get
+			{
+				return this._PrisonerStatus.Entity;
+			}
+			set
+			{
+				PrisonerStatus previousValue = this._PrisonerStatus.Entity;
 				if (((previousValue != value) 
-							|| (this._Prisoner.HasLoadedOrAssignedValue == false)))
+							|| (this._PrisonerStatus.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._Prisoner.Entity = null;
-						previousValue.Mugshots.Remove(this);
+						this._PrisonerStatus.Entity = null;
+						previousValue.Prisoners.Remove(this);
 					}
-					this._Prisoner.Entity = value;
+					this._PrisonerStatus.Entity = value;
 					if ((value != null))
 					{
-						value.Mugshots.Add(this);
-						this._Prisoner_ID = value.Prisoner_ID;
+						value.Prisoners.Add(this);
+						this._Prisoner_Status_ID = value.Prisoner_Status_ID;
 					}
 					else
 					{
-						this._Prisoner_ID = default(string);
+						this._Prisoner_Status_ID = default(int);
 					}
-					this.SendPropertyChanged("Prisoner");
+					this.SendPropertyChanged("PrisonerStatus");
 				}
 			}
 		}
@@ -2440,6 +2465,42 @@ namespace Project_Final_Boss
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_PrisonerCellAssignments(PrisonerCellAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = this;
+		}
+		
+		private void detach_PrisonerCellAssignments(PrisonerCellAssignment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = null;
+		}
+		
+		private void attach_ProcessingRecords(ProcessingRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = this;
+		}
+		
+		private void detach_ProcessingRecords(ProcessingRecord entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = null;
+		}
+		
+		private void attach_SecurityLogs(SecurityLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = this;
+		}
+		
+		private void detach_SecurityLogs(SecurityLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = null;
 		}
 	}
 }

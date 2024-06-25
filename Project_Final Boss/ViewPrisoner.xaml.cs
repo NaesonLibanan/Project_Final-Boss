@@ -15,36 +15,15 @@ using System.Windows.Shapes;
 namespace Project_Final_Boss
 {
     /// <summary>
-    /// Interaction logic for FileManager.xaml
+    /// Interaction logic for ViewPrisoner.xaml
     /// </summary>
-    public partial class FileManager : Window
+    public partial class ViewPrisoner : Window
     {
         DataClasses1DataContext _PrisonDB = null;
-        public FileManager()
+        public ViewPrisoner()
         {
             InitializeComponent();
             _PrisonDB = new DataClasses1DataContext(Properties.Settings.Default.ColdheartPrisonConnectionString);
-
-        }
-
-        private void Logout_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ProcessRecord_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void UploadAFile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ViewPrisoner_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
