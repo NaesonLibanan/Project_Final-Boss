@@ -1,0 +1,25 @@
+﻿<Window x:Class="Project_Final_Boss.ManagePrisonerData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Final_Boss"
+        mc:Ignorable="d"
+        Title="ManagePrisonerData" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Background/ManagePrisoner.jpg"/>
+        </Grid.Background>
+        <TextBox Name ="FirstName" HorizontalAlignment="Left" Margin="444,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="444,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox Name="LastName" HorizontalAlignment="Left" Margin="444,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_2"/>
+        <TextBox Name="SentenceInPrision" HorizontalAlignment="Left" Margin="444,288,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged4"/>
+        <ComboBox Name="Sex" Width="120" Margin="444,210,236,204" SelectionChanged="ComboBox_SelectionChanged_1"/>
+        <DatePicker Margin="443,247,123,160"/>
+        <ComboBox Name="Crime" Width="120" Margin="444,327,236,87" SelectionChanged="ComboBox_CrimeChanged"/>
+        <Button Content="Save" Margin="468,400,260,10" Click="Save_Click"/>
+        <Image Margin="44,103,620,197"/>
+        <ComboBox Name="Status" Width="120" Margin="444,367,236,50" SelectionChanged="Status_SelectionChanged"/>
+
+    </Grid>
+</Window>
