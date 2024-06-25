@@ -57,6 +57,9 @@ namespace Project_Final_Boss
     partial void InsertStaffStatus(StaffStatus instance);
     partial void UpdateStaffStatus(StaffStatus instance);
     partial void DeleteStaffStatus(StaffStatus instance);
+    partial void InsertMugshot(Mugshot instance);
+    partial void UpdateMugshot(Mugshot instance);
+    partial void DeleteMugshot(Mugshot instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -158,6 +161,14 @@ namespace Project_Final_Boss
 			get
 			{
 				return this.GetTable<StaffStatus>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Mugshot> Mugshots
+		{
+			get
+			{
+				return this.GetTable<Mugshot>();
 			}
 		}
 	}
@@ -336,6 +347,8 @@ namespace Project_Final_Boss
 		
 		private EntitySet<SecurityLog> _SecurityLogs;
 		
+		private EntitySet<Mugshot> _Mugshots;
+		
 		private EntityRef<PrisonerStatus> _PrisonerStatus;
 		
     #region Extensibility Method Definitions
@@ -373,6 +386,7 @@ namespace Project_Final_Boss
 			this._PrisonerCellAssignments = new EntitySet<PrisonerCellAssignment>(new Action<PrisonerCellAssignment>(this.attach_PrisonerCellAssignments), new Action<PrisonerCellAssignment>(this.detach_PrisonerCellAssignments));
 			this._ProcessingRecords = new EntitySet<ProcessingRecord>(new Action<ProcessingRecord>(this.attach_ProcessingRecords), new Action<ProcessingRecord>(this.detach_ProcessingRecords));
 			this._SecurityLogs = new EntitySet<SecurityLog>(new Action<SecurityLog>(this.attach_SecurityLogs), new Action<SecurityLog>(this.detach_SecurityLogs));
+			this._Mugshots = new EntitySet<Mugshot>(new Action<Mugshot>(this.attach_Mugshots), new Action<Mugshot>(this.detach_Mugshots));
 			this._PrisonerStatus = default(EntityRef<PrisonerStatus>);
 			OnCreated();
 		}
@@ -660,6 +674,19 @@ namespace Project_Final_Boss
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_Mugshot", Storage="_Mugshots", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID")]
+		public EntitySet<Mugshot> Mugshots
+		{
+			get
+			{
+				return this._Mugshots;
+			}
+			set
+			{
+				this._Mugshots.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PrisonerStatus_Prisoner", Storage="_PrisonerStatus", ThisKey="Prisoner_Status_ID", OtherKey="Prisoner_Status_ID", IsForeignKey=true)]
 		public PrisonerStatus PrisonerStatus
 		{
@@ -745,6 +772,18 @@ namespace Project_Final_Boss
 		}
 		
 		private void detach_SecurityLogs(SecurityLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = null;
+		}
+		
+		private void attach_Mugshots(Mugshot entity)
+		{
+			this.SendPropertyChanging();
+			entity.Prisoner = this;
+		}
+		
+		private void detach_Mugshots(Mugshot entity)
 		{
 			this.SendPropertyChanging();
 			entity.Prisoner = null;
@@ -2226,6 +2265,181 @@ namespace Project_Final_Boss
 		{
 			this.SendPropertyChanging();
 			entity.StaffStatus = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Mugshot")]
+	public partial class Mugshot : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Mugshot_ID;
+		
+		private string _Prisoner_ID;
+		
+		private System.Data.Linq.Binary _Mugshot1;
+		
+		private System.DateTime _Capture_Date;
+		
+		private EntityRef<Prisoner> _Prisoner;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMugshot_IDChanging(int value);
+    partial void OnMugshot_IDChanged();
+    partial void OnPrisoner_IDChanging(string value);
+    partial void OnPrisoner_IDChanged();
+    partial void OnMugshot1Changing(System.Data.Linq.Binary value);
+    partial void OnMugshot1Changed();
+    partial void OnCapture_DateChanging(System.DateTime value);
+    partial void OnCapture_DateChanged();
+    #endregion
+		
+		public Mugshot()
+		{
+			this._Prisoner = default(EntityRef<Prisoner>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mugshot_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Mugshot_ID
+		{
+			get
+			{
+				return this._Mugshot_ID;
+			}
+			set
+			{
+				if ((this._Mugshot_ID != value))
+				{
+					this.OnMugshot_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Mugshot_ID = value;
+					this.SendPropertyChanged("Mugshot_ID");
+					this.OnMugshot_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Prisoner_ID", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Prisoner_ID
+		{
+			get
+			{
+				return this._Prisoner_ID;
+			}
+			set
+			{
+				if ((this._Prisoner_ID != value))
+				{
+					if (this._Prisoner.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPrisoner_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Prisoner_ID = value;
+					this.SendPropertyChanged("Prisoner_ID");
+					this.OnPrisoner_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Mugshot", Storage="_Mugshot1", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Mugshot1
+		{
+			get
+			{
+				return this._Mugshot1;
+			}
+			set
+			{
+				if ((this._Mugshot1 != value))
+				{
+					this.OnMugshot1Changing(value);
+					this.SendPropertyChanging();
+					this._Mugshot1 = value;
+					this.SendPropertyChanged("Mugshot1");
+					this.OnMugshot1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Capture_Date", DbType="Date NOT NULL")]
+		public System.DateTime Capture_Date
+		{
+			get
+			{
+				return this._Capture_Date;
+			}
+			set
+			{
+				if ((this._Capture_Date != value))
+				{
+					this.OnCapture_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Capture_Date = value;
+					this.SendPropertyChanged("Capture_Date");
+					this.OnCapture_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Prisoner_Mugshot", Storage="_Prisoner", ThisKey="Prisoner_ID", OtherKey="Prisoner_ID", IsForeignKey=true)]
+		public Prisoner Prisoner
+		{
+			get
+			{
+				return this._Prisoner.Entity;
+			}
+			set
+			{
+				Prisoner previousValue = this._Prisoner.Entity;
+				if (((previousValue != value) 
+							|| (this._Prisoner.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Prisoner.Entity = null;
+						previousValue.Mugshots.Remove(this);
+					}
+					this._Prisoner.Entity = value;
+					if ((value != null))
+					{
+						value.Mugshots.Add(this);
+						this._Prisoner_ID = value.Prisoner_ID;
+					}
+					else
+					{
+						this._Prisoner_ID = default(string);
+					}
+					this.SendPropertyChanged("Prisoner");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

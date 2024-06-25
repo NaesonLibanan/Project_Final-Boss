@@ -25,6 +25,7 @@
       <Association Name="Prisoner_PrisonerCellAssignment" Member="PrisonerCellAssignments" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="PrisonerCellAssignment" />
       <Association Name="Prisoner_ProcessingRecord" Member="ProcessingRecords" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="ProcessingRecord" />
       <Association Name="Prisoner_SecurityLog" Member="SecurityLogs" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="SecurityLog" />
+      <Association Name="Prisoner_Mugshot" Member="Mugshots" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="Mugshot" />
       <Association Name="PrisonerStatus_Prisoner" Member="PrisonerStatus" ThisKey="Prisoner_Status_ID" OtherKey="Prisoner_Status_ID" Type="PrisonerStatus" IsForeignKey="true" />
     </Type>
   </Table>
@@ -98,6 +99,15 @@
       <Column Name="StaffStatus_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Status_Desc" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Association Name="StaffStatus_Staff" Member="Staffs" ThisKey="StaffStatus_ID" OtherKey="StaffStatus_ID" Type="Staff" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mugshot" Member="Mugshots">
+    <Type Name="Mugshot">
+      <Column Name="Mugshot_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Prisoner_ID" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Mugshot" Member="Mugshot1" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Capture_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Prisoner_Mugshot" Member="Prisoner" ThisKey="Prisoner_ID" OtherKey="Prisoner_ID" Type="Prisoner" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
