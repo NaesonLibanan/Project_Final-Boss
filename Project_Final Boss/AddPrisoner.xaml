@@ -1,0 +1,32 @@
+﻿<Window x:Class="Project_Final_Boss.AddPrisoner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Final_Boss"
+        mc:Ignorable="d"
+        Title="AddPrisoner" Height="450" Width="800">
+    <Grid Height="434" VerticalAlignment="Top">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Background/AddPrisioner.jpg"/>
+        </Grid.Background>
+        <TextBox Name ="FirstName" HorizontalAlignment="Left" Margin="565,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="565,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_1"/>
+        <TextBox Name="LastName" HorizontalAlignment="Left" Margin="565,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_2"/>
+        <TextBox Name="SentenceInPrision" HorizontalAlignment="Left" Margin="565,266,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged4"/>
+        <ComboBox Name="Sex" Width="120" Margin="565,188,115,226" SelectionChanged="ComboBox_SelectionChanged_1"/>
+        <DatePicker Margin="564,225,2,182"/>
+        <ComboBox Name="Crime" Width="120" Margin="565,305,115,109" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button Content="Use Camera" Margin="200,264,523,146" Click="Camera_Click"/>
+        <Button Content="Upload Pic" Margin="282,264,446,146" Click="Upload_Click"/>
+        <Button Content="Save" Margin="589,344,139,66" Click="Save_Click"/>
+        <Image Margin="207,110,458,191"/>
+
+        <!-- Set the background of the grid to an image -->
+
+
+        <!-- Define the logout button, which remains visible -->
+
+        <!-- Define the other buttons and apply the transparent style to them -->
+    </Grid>
+</Window>
