@@ -40,13 +40,12 @@ namespace Project_Final_Boss
             {
                 MessageBox.Show("Login successful!");
 
-                // Check Staff Role for Intake Officer (assuming StaffRole is a property in the Staff class)
-                if (staffLogin.StaffRole.Role_Desc == "Prisoner Manager") // Access control based on Role_Desc
+        
+                if (staffLogin.StaffRole.Role_Desc == "Prisoner Manager") 
                 {
-                    // Open Intake_Officer window
                     Intake_Officer intakeWindow = new Intake_Officer();
                     intakeWindow.Show();
-                    this.Close(); // Close the main login window
+                    this.Close(); 
                 }
                 else if (staffLogin.StaffRole.Role_Desc == "File Handler") // Add more conditions for other roles
                 {
@@ -56,8 +55,7 @@ namespace Project_Final_Boss
                 }
                 else
                 {
-                    // Message for unauthorized access (optional)
-                    // MessageBox.Show("Your role does not have access to this feature.");
+              
                 }
             }
             else

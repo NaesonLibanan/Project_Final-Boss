@@ -26,7 +26,7 @@ namespace Project_Final_Boss.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-SKTT1JL\\SQLEXPRESS;Initial Catalog=ColdheartPrison;Integrated" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-KR5QGF7\\SQLEXPRESS;Initial Catalog=ColdheartPrison;Integrated" +
             " Security=True;Connect Timeout=30;Encrypt=True;TrustServerCertificate=True")]
         public string ColdheartPrisonConnectionString {
             get {
