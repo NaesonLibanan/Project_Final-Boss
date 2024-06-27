@@ -10,6 +10,7 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Background/ManagePrisoner.jpg"/>
         </Grid.Background>
+        <ComboBox Name="Prisoners" Width="120" Margin="186,106,494,307" SelectionChanged="ComboBox_Prisoners"/>
         <TextBox Name ="FirstName" HorizontalAlignment="Left" Margin="444,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged"/>
         <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="444,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_1"/>
         <TextBox Name="LastName" HorizontalAlignment="Left" Margin="444,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_2"/>
