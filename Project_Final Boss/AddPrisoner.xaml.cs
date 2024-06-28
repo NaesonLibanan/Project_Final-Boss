@@ -73,7 +73,6 @@ namespace Project_Final_Boss
 
         private void HandleCameraFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            // Update the image control (pic) with the latest frame from the camera
             Dispatcher.Invoke(() =>
             {
                 pic.Source = BitmapToImageSource((Bitmap)eventArgs.Frame.Clone());
@@ -148,26 +147,52 @@ namespace Project_Final_Boss
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            // Retrieve input values
+            // 1. Input Validation:
+            if (string.IsNullOrWhiteSpace(FirstName.Text) ||
+                string.IsNullOrWhiteSpace(LastName.Text) ||
+                Sex.SelectedItem == null ||
+                Crime.SelectedItem == null ||
+                !int.TryParse(SentenceInPrision.Text, out int sentence) ||
+                DateOfBirthPicker.SelectedDate == null)
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+            if (sentence <= 0 || sentence > 300)
+            {
+                MessageBox.Show("Sentence must be more than zero and less than or equal to 300 years.");
+                return;
+            }
+
+
+            if (pic.Source == null)
+            {
+                MessageBox.Show("Please capture a photo.");
+                return;
+            }
+
+            if (_PrisonDB.Prisoners.Any(p => p.Prisoner_GivenName == FirstName.Text && p.Prisoner_Surname == LastName.Text))
+            {
+                MessageBox.Show("A prisoner with the same first and last name already exists.");
+                return;
+            }
+
             string firstName = FirstName.Text;
             string middleName = MiddleName.Text;
             string lastName = LastName.Text;
             char sex = (char)Sex.SelectedItem;
             string crime = Crime.SelectedItem.ToString();
-            int sentence = int.Parse(SentenceInPrision.Text);
             DateTime selectedDate = DateOfBirthPicker.SelectedDate.Value;
 
-            // Placeholder for mugshot data
+  
             byte[] mugshotData = null;
-
-            // If there's a captured image, convert and save it
             if (pic.Source != null)
             {
                 BitmapSource bitmapSource = (BitmapSource)pic.Source;
-                mugshotData = BitmapSourceToByteArray(bitmapSource);
+                mugshotData = BitmapSourceToByteArray(bitmapSource); 
             }
 
-            // Create new prisoner object
+
             Prisoner newPrisoner = new Prisoner
             {
                 Prisoner_ID = GeneratePrisonerID(),
@@ -179,20 +204,34 @@ namespace Project_Final_Boss
                 Crime_Desc = crime,
                 Sentence_Years = sentence,
                 Admission_Date = DateTime.Now,
-                Prisoner_Status_ID = 1, // Assuming 1 is the status for 'Admitted'
+                Prisoner_Status_ID = 1, 
                 Mugshot = mugshotData
             };
 
-            // Insert new prisoner into the database
-            _PrisonDB.Prisoners.InsertOnSubmit(newPrisoner);
-            _PrisonDB.SubmitChanges();
+        
+            try
+            {
+                _PrisonDB.Prisoners.InsertOnSubmit(newPrisoner);
+                _PrisonDB.SubmitChanges();
 
-            MessageBox.Show("Prisoner added successfully!");
+                MessageBox.Show("Prisoner added successfully!");
+
+              
+                FirstName.Clear();
+                MiddleName.Clear();
+                LastName.Clear();
+                SentenceInPrision.Clear();
+                DateOfBirthPicker.SelectedDate = null;
+                pic.Source = null; // Clear the captured photo
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding prisoner: {ex.Message}");
+            }
         }
 
         private string GeneratePrisonerID()
         {
-            // Generate a new Prisoner_ID
             int prisonerCount = _PrisonDB.Prisoners.Count();
             return "P" + (prisonerCount + 1).ToString().PadLeft(3, '0');
         }
