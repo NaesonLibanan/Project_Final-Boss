@@ -10,16 +10,18 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Background/ManagePrisoner.jpg"/>
         </Grid.Background>
-        <ComboBox Name="Prisoners" Width="120" Margin="186,106,494,307" SelectionChanged="ComboBox_Prisoners"/>
+        <ComboBox Name="Prisoners" Width="120" Margin="186,106,494,307" 
+          DisplayMemberPath="Prisoner_ID" SelectedValuePath="Prisoner_ID" 
+          SelectionChanged="ComboBox_Prisoners"/>
         <TextBox Name ="FirstName" HorizontalAlignment="Left" Margin="444,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged"/>
         <TextBox Name="MiddleName" HorizontalAlignment="Left" Margin="444,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_1"/>
         <TextBox Name="LastName" HorizontalAlignment="Left" Margin="444,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged_2"/>
         <TextBox Name="SentenceInPrision" HorizontalAlignment="Left" Margin="444,288,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" TextChanged="TextBox_TextChanged4"/>
         <ComboBox Name="Sex" Width="120" Margin="444,210,236,204" SelectionChanged="ComboBox_SelectionChanged_1"/>
-        <DatePicker Margin="443,247,123,160"/>
+        <DatePicker Margin="0,0,123,160" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="234"/>
         <ComboBox Name="Crime" Width="120" Margin="444,327,236,87" SelectionChanged="ComboBox_CrimeChanged"/>
-        <Button Content="Save" Margin="468,400,260,10" Click="Save_Click"/>
-        <Image Margin="44,103,620,197"/>
+        <Button Content="Save" Margin="468,400,260,10" Click="Save_Click" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"/>
+        <Image Name="MugshotImage" Margin="44,103,620,197"/>
         <ComboBox Name="Status" Width="120" Margin="444,367,236,50" SelectionChanged="Status_SelectionChanged"/>
 
     </Grid>

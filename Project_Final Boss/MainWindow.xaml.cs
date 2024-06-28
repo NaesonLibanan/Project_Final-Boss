@@ -47,7 +47,7 @@ namespace Project_Final_Boss
                     intakeWindow.Show();
                     this.Close(); 
                 }
-                else if (staffLogin.StaffRole.Role_Desc == "File Handler") // Add more conditions for other roles
+                else if (staffLogin.StaffRole.Role_Desc == "File Handler")
                 {
                     FileManager fileManagerWindow = new FileManager();
                     fileManagerWindow.Show();

@@ -1,0 +1,43 @@
+﻿<Window x:Class="Project_Final_Boss.ProcessRecord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project_Final_Boss"
+        mc:Ignorable="d"
+        Title="ProcessRecord" Height="450" Width="800">
+    <Grid>
+        <ComboBox x:Name="PrisonerComboBox" HorizontalAlignment="Left" Margin="20" VerticalAlignment="Top" Width="120" DisplayMemberPath="Prisoner_ID" SelectedValuePath="Prisoner_ID" SelectionChanged="PrisonerComboBox_SelectionChanged"/>
+
+        <ComboBox x:Name="StaffComboBox" HorizontalAlignment="Left" Margin="248,20,0,0" VerticalAlignment="Top" Width="120" DisplayMemberPath="Staff_Name" SelectedValuePath="Staff_ID" SelectionChanged="StaffComboBox_SelectionChanged"/>
+        <DatePicker x:Name="ProcessingDatePicker" HorizontalAlignment="Left" Margin="308,86,0,0" VerticalAlignment="Top" Height="35" RenderTransformOrigin="0.5,0.5">
+
+        </DatePicker>
+        <ComboBox x:Name="ProcessingTypeComboBox" HorizontalAlignment="Left" Margin="114,77,0,0" VerticalAlignment="Top" Width="156" Height="27" RenderTransformOrigin="0.5,0.5">
+            <ComboBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="179.563"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ComboBox.RenderTransform>
+        </ComboBox>
+        <TextBox x:Name="DocumentDescriptionTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="260" Height="95" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Margin="470,56,0,0"/>
+
+        <Button x:Name="AddButton" Content="Add Record" HorizontalAlignment="Left" Margin="600,380,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>
+        <Button x:Name="UpdateButton" Content="Update Record" HorizontalAlignment="Left" Margin="680,380,0,0" VerticalAlignment="Top" Width="100" Click="UpdateButton_Click" IsEnabled="False"/>
+        <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Margin="10,380,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_Click"/>
+
+        <DataGrid x:Name="RecordsDataGrid" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Height="180" Width="760" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Record ID" Binding="{Binding ProcessingRecord_ID}" />
+                <DataGridTextColumn Header="Prisoner ID" Binding="{Binding Prisoner_ID}" />
+                <DataGridTextColumn Header="Staff ID" Binding="{Binding Staff_ID}" />
+                <DataGridTextColumn Header="Date" Binding="{Binding Processing_Date, StringFormat='d'}" />
+                <DataGridTextColumn Header="Type" Binding="{Binding Processing_Type}" />
+                <DataGridTextColumn Header="Document Description" Binding="{Binding Document_Description}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

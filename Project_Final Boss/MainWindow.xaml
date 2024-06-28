@@ -7,11 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="470" Width="800" MaxWidth="800" MaxHeight="475">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="391*"/>
+        </Grid.ColumnDefinitions>
         <Grid.Background>
             <ImageBrush ImageSource="/Background/Login.jpg"/>
         </Grid.Background>
-        <TextBox x:Name="UsernameTbx" HorizontalAlignment="Left" Margin="378,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="23" TextChanged="Username" Text="" Background="#FF807373"/>
-        <TextBox x:Name="PasswordTbx" HorizontalAlignment="Left" Margin="378,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="23" TextChanged="Password" Text="" Background="#FF807373"/>
-        <Button Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="424,327,0,84"   Width="72" Height="23" Click="Login_Button_Click"/>
+        <TextBox x:Name="UsernameTbx" HorizontalAlignment="Left" Margin="360,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="23" TextChanged="Username" Text="" Background="#FF807373" Grid.Column="1"/>
+        <TextBox x:Name="PasswordTbx" HorizontalAlignment="Left" Margin="360,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Height="23" TextChanged="Password" Text="" Background="#FF807373" Grid.Column="1"/>
+        <Button Name="Login_Button" Content="Login" HorizontalAlignment="Left" Margin="406,327,0,104"   Width="72" Height="23" Click="Login_Button_Click" Grid.Column="1"/>
     </Grid>
 </Window>

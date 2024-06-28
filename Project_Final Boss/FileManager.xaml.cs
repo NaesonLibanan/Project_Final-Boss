@@ -28,12 +28,18 @@ namespace Project_Final_Boss
 
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
+
 
         private void ProcessRecord_Click(object sender, RoutedEventArgs e)
         {
 
+            ProcessRecord process = new ProcessRecord();
+            process.Show();
+            this.Close();
         }
 
         private void UploadAFile_Click(object sender, RoutedEventArgs e)
